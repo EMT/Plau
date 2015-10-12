@@ -1,0 +1,8 @@
+// Helpers is for mixins, variables and Sass functions.
+@import 'helpers/mixins';
+
+// Base folder is for our reset, typography and other misc site wide fixes.
+@import 'base/reset';
+
+// Pages is for page specific styles.
+@import 'pages/holding';

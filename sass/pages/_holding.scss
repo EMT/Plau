@@ -1,0 +1,137 @@
+.plau-logo {
+	width: 90%;
+	max-width: 750px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include vendor(transform, translate(-50%,-50%));
+	opacity: 1;
+	z-index: 20;
+}
+
+*[data-fallback] img {
+		max-width: 100%;
+		display: block;
+		@include vendor(animation-name, slowFade);
+	    @include vendor(animation-timing-function, ease-in);
+	    @include vendor(animation-duration, 350ms);
+	    @include vendor(animation-fill-mode, forwards);
+}
+
+.top-title {
+	max-width: 400px;
+	width: 90%;
+	position: absolute;
+	top: 5%;
+	left: 50%;
+	@include vendor(transform, translate(-50%,-50%));
+	opacity: 1;
+	z-index: 20;
+}
+
+
+html,body {
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    @include vendor(transform, translateZ(0));
+
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    opacity: 0;
+}
+
+.social-sharing-links {
+	position: absolute;
+	left: 5%;
+	bottom: 5%;
+	z-index: 20;
+
+	li {
+		display: inline-block;
+		float: left;
+		margin-right: 10px;
+		width: 45px;
+		opacity: 0;
+	}
+
+	li img {
+		display: block;
+		width: 100%;
+	}
+
+}
+
+body.finished .social-sharing-links {
+	li {
+		@include vendor(animation-name, slowFade);
+	    @include vendor(animation-timing-function, ease-in);
+	    @include vendor(animation-duration, 350ms);
+	    @include vendor(animation-fill-mode, forwards);
+
+    	@for $i from 1 through 5{
+		    &:nth-child(#{$i}){ 
+		        @include vendor(animation-delay, #{0 + $i * 200}ms);
+		    }
+		} 
+	}
+}
+
+body.finished .background {
+	@include vendor(animation-name, slowFadeHalfOpacity);
+    @include vendor(animation-timing-function, ease-in);
+    @include vendor(animation-duration, 1000ms);
+    @include vendor(animation-fill-mode, forwards);
+}
+
+body.finished .background {
+	@for $i from 1 through 15{
+	    &:nth-child(#{$i}){ 
+	       @include vendor(animation-delay,#{0 + $i * 750}ms);
+	    }
+	} 
+}
+
+
+
+@media all and (max-width: 600px) {
+	.background {
+		min-width: auto;
+		min-height: 100%;
+	}
+
+	.social-sharing-links {
+		left: 50%;
+		display: table;
+		@include vendor(transform, translateX(-50%));
+	}
+}
+
+
+@include keyframes(slowFadeHalfOpacity) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.165;
+    }
+}
+
+
+@include keyframes(slowFade) {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
